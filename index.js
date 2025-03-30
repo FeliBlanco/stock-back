@@ -9,7 +9,8 @@ app.use(cors());
 
 app.get('/scrape2/:codigo', async (req, res) => {
     const tiemo1 = Date.now();
-    const url = `https://www.cindymayorista.com.ar/resultado-busqueda.htm?keywords=920065%2F022`;
+    const codigo = req.params.codigo;
+    const url = `https://www.cindymayorista.com.ar/resultado-busqueda.htm?keywords=${codigo}`;
     const { data } = await axios.get(url);
 
     const $ = cheerio.load(data);
