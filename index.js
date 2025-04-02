@@ -19,11 +19,14 @@ app.get('/scrape2/:codigo', async (req, res) => {
     
     const nombre = box.find('.product-box-title').text().trim();
     if(!nombre) return res.status(404).send("No encontrado")
+        
+    const codigo_producto = box.find('.product-box-model').text().trim().replace('Código', '').replaceAll(' ', '');
     const precio = box.find('.product-box-price .prices-reserved').text().trim();
+    const precio_int = parseInt(precio.replace('$', '').replaceAll(' ', ''))
     const img = box.find('.product-box-media img').attr('src');
 
     console.log("TARDO: ", Date.now() - tiemo1)
-    res.send({ nombre, precio, img: `https://www.cindymayorista.com.ar/${img}` })
+    res.send({ nombre, precio: precio_int, img: `https://www.cindymayorista.com.ar/${img}`, codigo: codigo_producto })
 })
 
 app.get('/scrape/:codigo', async (req, res) => {
