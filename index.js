@@ -22,7 +22,8 @@ app.get('/scrape2/:codigo', async (req, res) => {
         
     const codigo_producto = box.find('.product-box-model').text().trim().replace('Código', '').replaceAll(' ', '');
     const precio = box.find('.product-box-price .prices-reserved').text().trim();
-    const precio_int = parseInt(precio.replace('$', '').replaceAll(' ', ''))
+    console.log(precio)
+    const precio_int = Number(precio.replace(/[$.\s]/g, ""))
     const img = box.find('.product-box-media img').attr('src');
 
     console.log("TARDO: ", Date.now() - tiemo1)
