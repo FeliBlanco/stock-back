@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 
 app.get('/scrape2/:codigo', async (req, res) => {
+    console.log("LLEGA")
     const tiemo1 = Date.now();
     const codigo = req.params.codigo;
     const url = `https://www.cindymayorista.com.ar/resultado-busqueda.htm?keywords=${codigo}`;
